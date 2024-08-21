@@ -1,22 +1,17 @@
 <template>
-  <header>
-    <h1>Hello World!</h1>
-    <h1>{{ msg }}</h1>
-  </header>
+  <Home />
 </template>
 
 <script>
-  export default{
+import HomePage from "./HomePage.vue"
+  export default {
     name: "App",
-    data: function () {
-      return {
-        msg:"Hello World!"
-      }
-    }
+    components:{
+      "Home":HomePage    //HomePage - then render with <HomePage /> instead of just <Home />
+    }  
   }
 </script>
 
-
 <style scoped>
-
+  
 </style>
