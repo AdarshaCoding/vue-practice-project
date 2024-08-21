@@ -1,36 +1,44 @@
 <template>
   <div class="body">
-    <div class="data-container">
-      <h2>{{ this.count }}</h2>
-    </div>
-    <div class="operations">
-      <!-- <button class="std-btn" v-on:click="this.count++">Increment</button> -->
-      <!-- <button class="std-btn" v-on:click="this.count--">Decrement</button> -->
-      <button class="std-btn" @click="increment">Increment</button>
-      <button class="std-btn" v-on:click="decrement">Decrement</button>
-    </div>
-    <hr />
-    <div class="data-entry">
-      <!--
+    <div class="section-one">
+      <div class="data-container">
+        <h2 :style="{ textAlign: 'center' }">{{ this.count }}</h2>
+      </div>
+      <div class="operations">
+        <!-- <button class="std-btn" v-on:click="this.count++">Increment</button> -->
+        <!-- <button class="std-btn" v-on:click="this.count--">Decrement</button> -->
+        <button class="std-btn" @click="increment">Increment</button>
+        <button class="std-btn" v-on:click="decrement">Decrement</button>
+      </div>
+      <hr />
+      <div class="data-entry">
+        <!--
             v-bind:style or :style
         -->
-      <label :style="{ color: 'Orange', fontSize: 20 + 'px' }">Search</label>
-      <input type="text" v-model="searchText" placeholder="Search" />
-      <span :style="{ paddingLeft: 10 + 'px' }">{{ searchText }}</span>
+        <label :style="{ color: 'Orange', fontSize: 20 + 'px' }">Search</label>
+        <input type="text" v-model="searchText" placeholder="Search" />
+        <span :style="{ paddingLeft: 10 + 'px' }">{{ searchText.length }}</span>
+      </div>
+      <hr />
+      <div class="loops-section">
+        <h4>Ordered Items</h4>
+        <ul class="items">
+          <li v-for="item in items">{{ item }}</li>
+        </ul>
+      </div>
     </div>
-    <hr />
-    <div class="loops-section">
-      <h4>Ordered Items</h4>
-      <ul class="items">
-        <li v-for="item in items">{{ item }}</li>
-      </ul>
+    <div class="test-component">
+      <TestComponent />
     </div>
   </div>
 </template>
 
 <script>
+import TestComponent from './TestComponent.vue'
+
 export default {
   name: 'Body',
+  components: { TestComponent },
   data: function () {
     return {
       //state variables and default values
@@ -65,11 +73,23 @@ export default {
 </script>
 
 <style scoped>
+.section-one {
+  border: 1px solid white;
+  padding: 20px;
+}
+
+.test-component {
+  border: 1px solid white;
+  padding: 20px;
+  width: 280px;
+}
 .body {
   background-color: rgb(55, 45, 56);
   color: white;
   min-height: 90vh;
   padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .std-btn {
@@ -80,6 +100,7 @@ export default {
 
 .operations {
   padding-bottom: 10px;
+  text-align: center;
 }
 
 .data-entry {
